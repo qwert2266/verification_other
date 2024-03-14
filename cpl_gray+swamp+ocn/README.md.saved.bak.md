@@ -1,7 +1,7 @@
 # Introduction
 
 This is the readme.md for `MITgcm_contrib/verification_other/cpl_gray+swamp+ocn` a directory which provides source code and input files for a coupled setup using gray atmospheric physics (O'Gorman and Schneider, JCl, 2008)
-plugged into the MITgcm dynamical core, with part of the surface being a slab ocean (swamp or continent) and some being a dynamic ocean. This setup uses a standard cubed-sphere for atmosphere and ocean (6 faces, each 32x32), non-uniform pressure levels in the atmopshere (26), and non-uniform depth levels in the ocean. The code runs on 28 nodes, with 3 being for the ocean (2 faces per node), 24 being for the atmosphere (4 nodes per face), and 1 for coupling. 
+plugged into the MITgcm dynamical core, with part of the surface being a slab ocean (swamp or continent) and some being a dynamic ocean. This setup uses a standard cubed-sphere for atmosphere and ocean (6 faces, each 32x32), non-uniform pressure levels in the atmopshere (26), and non-uniform depth levels in the ocean (43). The existing code runs on 28 nodes, with 3 being for the ocean (2 faces per node), 24 being for the atmosphere (4 nodes per face), and 1 for coupling. 
 
 The code here is for the continental configuration used in Tuckman et al., The Zonal Seasonal Cycle of Tropical Precipitation: Introducing the Indo-Pacific Monsoonal Mode, Journal of Climate, 2024, for the dynamic ocean simulation. However, in the version in this directory, the ocean's vertical resolution is higher and albedo is symmetric. 
 
@@ -24,15 +24,15 @@ This directory consists of:
 * `cpl_gray+swamp+ocn/run_folder/`  : Folder where you should run the code
 
 
-The run folder is where the code will be run and the output will end up. It should consist of:
+The run folder is where the code will be run and the output will end up. It consists of:
 
 * `cpl_gray+swamp+ocn/run_folder/sgm_run` : Progress tracker
 * `cpl_gray+swamp+ocn/run_folder/run_cpl.slurm` : Slurm script to start the run
 * `cpl_gray+swamp+ocn/run_folder/rank_0` : The folder which controls the coupling node
-* `cpl_gray+swamp+ocn/run_folder/rank_[1-3]` : The folders which control the ocean code. `rank_2` and `rank_3` should have soft links to `rank_1`, so if anything is to be changed you only need to change `rank_1`
-* `cpl_gray+swamp+ocn/run_folder/rank_[4-28]` : The folders which control the atmosphere code. `rank_[5-28]` should have soft links to `rank_4`
+* `cpl_gray+swamp+ocn/run_folder/rank_[1-3]` : The folders which control the ocean code. `rank_2` and `rank_3` have soft links to `rank_1`, so if anything is to be changed you only need to change `rank_1`
+* `cpl_gray+swamp+ocn/run_folder/rank_[4-28]` : The folders which control the atmosphere code. `rank_[5-28]` have soft links to `rank_4`
 * `cpl_gray+swamp+ocn/run_folder/rank_0` : The folder which controls the coupling code
-* `cpl_gray+swamp+ocn/run_folder/bin` : The folder which will contains the executable for each of the model components. Executables to be compiled on the same system on which you plan on running the code
+* `cpl_gray+swamp+ocn/run_folder/bin` : The folder which contains the executable for each of the model components. There are currently executables in the folder, but they will need to be replaced with ones that are compiled on the same system on which you plan on running the code
 * `cpl_gray+swamp+ocn/run_folder/Output` : The folder which will contain all the output when the code is done running
    
  
